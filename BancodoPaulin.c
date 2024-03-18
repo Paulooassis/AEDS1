@@ -100,7 +100,7 @@ void sacar(cliente cli[], int *total){
   }
 
   if(achou == false){
-    printf("\nNumero da conta digitado inv·lido.\n\n");
+    printf("\nNumero da conta digitado inv√°lido.\n\n");
   }
 }
 
