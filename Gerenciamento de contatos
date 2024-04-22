@@ -1,0 +1,178 @@
+#include <ctype.h>
+#include <stdbool.h>
+#include <stdio.h>
+#include <string.h>
+
+typedef struct {
+  char nome[60], num[20];
+} contato;
+
+void menu() {
+
+  for (int i = 0; i < 50; i++) {
+    printf("-");
+  }
+  printf("\n\t\tSEJA BEM VINDO A PAULIN CONTATOS\n");
+
+  for (int i = 0; i < 50; i++) {
+    printf("-");
+  }
+
+  printf("\n\n\t\tMENU DE OPCOES !!\n\n");
+
+  printf("1. CADASTRAR\n2. VISUALIZAR CADASTRADOS\n3. BUSCAR CONTATOS\n4. "
+         "EXCLUIR CONTATO\n5. ENCERRAR PROGRAMA\n\nDigite a opcao desejada: ");
+}
+
+void cadastrar(contato cont[], int *ptr) {
+
+    printf("\nDigite o nome: ");
+    scanf(" %[^\n]", cont[*ptr].nome);
+    printf("Digite o numero de telefone: ");
+    scanf(" %[^\n]", cont[*ptr].num);
+    printf("\nMembro devidamente cadastrado !!\n");
+    printf("\n");
+    (*ptr)++;
+}
+
+void visualizar(contato cont[], int *ptr) {
+  
+  if (*ptr == 0) {
+    printf("\nNao possuem membros cadastardos.\n\n");
+  } 
+  else {
+    printf("\nPossuem %d membros cadastrados !!\n\n", *ptr);
+    for (int i = 0; i < *ptr; i++) {
+      printf("\nO %d nome e %s\nO %d numero e %s\n\n", i+1, cont[i].nome, i+1,
+             cont[i].num);
+    }
+  }
+}
+
+void buscar(contato cont[], int *ptr) {
+  
+  if (*ptr == 0) {
+    printf("\nNao possuem membros cadastardos.\n\n");
+  } 
+  else {
+    int opcao = 0;
+    char str[60], str2[20];
+    bool achou = false;
+
+    printf("Deseja procurar por: \n\n1. Nome\n2. Telefone\n\nDigite a opcao desejada: ");
+    scanf("%d", &opcao);
+
+    if (opcao == 1) {
+      printf("Digite o nome: ");
+      scanf(" %[^\n]", str);
+
+      for (int i = 0; i < *ptr; i++) {
+        if (strcmp(str, cont[i].nome) == 0) {
+          printf("\nO nome e %s\nO telefone e %s\n\n", cont[i].nome, cont[i].num);
+          achou = true;
+        }
+      }
+    }
+
+    else {
+      printf("Dgite o numero: ");
+      scanf(" %[^\n]", str2);
+
+      for (int i = 0; i < *ptr; i++) {
+        if (strcmp(str2, cont[i].num) == 0) {
+          printf("O nome e %s\nO telefone e %s\n\n", cont[i].nome, cont[i].num);
+          achou = true;
+        }
+      }
+    }
+
+    if (achou == false) {
+      printf("\nNenhum cadastro encontrada.\n\n");
+    }
+    else{printf("\nCadastro encontrada com sucesso.\n\n");}
+  }
+}
+
+void excluir(contato cont[], int *ptr) {
+
+  int op = 0, x;
+  char str[60], str2[20];
+  bool achou = false;
+
+  if (*ptr == 0) {
+    printf("\nNao possuem membros cadastardos.\n\n");
+  } else {
+
+    printf("Deseja deletar por: \n\n1. Nome\n2. Numero\n\nDigite a opcao: ");
+    scanf("%d", &op);
+
+    if (op == 1) {
+      printf("Digite o nome: ");
+      scanf(" %[^\n]", str);
+
+      for (int i = 0; i < *ptr; i++) {
+        if (strcasecmp(str, cont[i].nome) == 0) {
+          
+          strcpy(cont[i].nome, cont[*ptr-1].nome);
+          strcpy(cont[i].num, cont[*ptr-1].num);
+          achou = true;
+          (*ptr)--;
+        }
+      }
+    }
+
+    else {
+      printf("Dgite o numero: ");
+      scanf(" %[^\n]", str2);
+
+      for (int i = 0; i < *ptr; i++) {
+        if (strcasecmp(str2, cont[i].num) == 0) {
+          
+          strcpy(cont[i].nome, cont[--*ptr].nome);
+          strcpy(cont[i].num, cont[--*ptr].num);
+          achou = true;
+          (*ptr)--;
+        }
+      }
+    }
+
+    if(achou == true){ printf("\nCadastro excluida com sucesso !!\n\n");}
+    
+    if (achou == false) {
+      printf("\nNenhum cadastro com esse nome ou numero encontrado conforme o "
+             "digitado.\n\n");
+    }
+  }
+}
+
+int main() {
+  int opcao = 1, total = 0;
+  int *ptr = &total;
+  contato cont[*ptr];
+
+  while (1) {
+    menu();
+    scanf("%d", &opcao);
+    switch (opcao) {
+    case 1:
+      cadastrar(cont, ptr);
+      break;
+    case 2:
+      visualizar(cont, ptr);
+      break;
+    case 3:
+      buscar(cont, ptr);
+      break;
+    case 4:
+      excluir(cont, ptr);
+      break;
+    case 5:
+      printf("\n\nFoi ótimo ter voce com a gente, programa encerrado com sucesso !!");
+      return 0;
+      break;
+    default:
+      printf("Opcao invalida, digite novamente.\n\n");
+      break;
+    }
+  }
+}
