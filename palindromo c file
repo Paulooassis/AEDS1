@@ -1,0 +1,49 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int palindromo() {}
+
+int main(void) {
+  int qnt;
+
+  printf("Digite quantos palindromos serao: ");
+  scanf("%d", &qnt);
+
+  int k, tamanho[qnt], palindromo[qnt];
+  char palavra[qnt][50];
+
+  for (int i = 0; i < qnt; i++) {
+    printf("Digite a %d palavra: ", i + 1);
+    scanf(" %[^\n]", palavra[i]);
+
+    tamanho[i] = strlen(palavra[i]);
+    k = tamanho[i] - 1;
+    palindromo[i] = 1;
+
+    for (int j = 0; j < tamanho[i]; j++) {
+      if (palavra[i][j] != palavra[i][k]) {
+        palindromo[i] = 0;
+        break;
+      }
+      k--;
+    }
+  }
+
+  FILE *arq = fopen("palindromo.txt", "w");
+
+  if (arq == NULL) {
+    printf("Erro ao abrir o arquivo.\n\n");
+    exit(0);
+  } else {
+    for (int i = 0; i < qnt; i++) {
+      if (palindromo[i] == 0) {
+        fprintf(arq, "%s nao e palindromo\n", palavra[i]);
+      } else {
+        fprintf(arq, "%s e palindromo\n", palavra[i]);
+      }
+    }
+  }
+
+  fclose(arq);
+}
