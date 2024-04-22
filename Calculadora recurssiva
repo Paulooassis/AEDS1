@@ -1,0 +1,165 @@
+#include <math.h>
+#include <stdio.h>
+#include <string.h>
+
+void menu() {
+  for (int i = 0; i < 55; i++) {
+    printf("-");
+  }
+  printf("\n\t\tBEM VINDO A CALCULADORA DO PAULIN\n");
+  for (int i = 0; i < 55; i++) {
+    printf("-");
+  }
+  printf("\n\n");
+  printf("\t\tESCOLHA ALGUMA FUNCIONALIDADE\n\n");
+  printf("1. SOMAR\n2. SUBTRAIR\n3. MULTIPLICAR\n4. DIVIDIR\n5. "
+         "POTENCIACAO\n6. RAIZ QUADRADA\n7. ENCERRAR CALCULADORA\n\n");
+}
+
+int somar(int a, int b) {
+  return a+b;
+}
+
+int subtrair(int a, int b) {
+  return a-b;
+}
+
+int multiplicar(int a, int b) {
+  if(a == 0 || b == 0){
+    return 0;
+  }
+  else{
+    return a+multiplicar(a, b-1);
+  }
+}
+
+int divisao(int a, int b) {
+  if(a == 0 || b == 0){
+    return 0;
+  }
+  else{
+    return 1 + divisao(a-b,b);
+  }
+}
+
+int potencia(int a, int b) {
+  if(a == 0){
+    return 0;
+  }
+  else if(b == 0){
+    return 1;
+  }
+  else{
+    return a * potencia(a, b-1);
+  }
+}
+
+int raiz(int a) {
+  if(a == 0 || a<0){
+    return 0;
+  }
+  if(a == 1){
+    return a;
+  }
+  else{
+    for (int i = 1; i <= a / 2; i++) {
+      if (i * i == a) {
+          return i;
+      }
+    }
+  }
+  return raiz(a + 1);
+}
+
+int main() {
+  int opcao = 1;
+  int num, num2, x;
+
+  while (1) {
+    menu();
+    printf("Digite a opcao desejda: ");
+    scanf("%d", &opcao);
+
+    switch (opcao) {
+    case 1:
+      printf("\n\t\tMODO SOMA SELECIONADO !!\n\n");
+      printf("Digite o primerio numero: ");
+      scanf("%d", &num);
+
+      printf("Digite o segundo numero: ");
+      scanf("%d", &num2);
+
+      x= somar(num, num2);
+      
+      printf("A soma entre %d e %d e %d\n\n", num, num2, x);
+      break;
+    case 2:
+      printf("\n\t\tMODO SUBTRAIR SELECIONADO !!\n\n");
+      printf("Digite o primerio numero: ");
+      scanf("%d", &num);
+
+      printf("Digite o segundo numero: ");
+      scanf("%d", &num2);
+
+      x = subtrair(num, num2);
+
+      printf("A subtracao entre %d e %d e %d\n\n", num, num2, x);
+      
+      break;
+    case 3:
+      printf("\n\t\tMODO MULTIPLICAR SELECIONADO !!\n\n");
+      printf("Digite o primerio numero: ");
+      scanf("%d", &num);
+
+      printf("Digite o segundo numero: ");
+      scanf("%d", &num2);
+
+      x = multiplicar(num, num2);
+
+      printf("A multiplicacao entre %d e %d e %d\n\n", num, num2, x);
+
+      break;
+    case 4:
+      printf("\n\t\tMODO DIVISAO SELECIONADO !!\n\n");
+      printf("Digite o primerio numero: ");
+      scanf("%d", &num);
+
+      printf("Digite o segundo numero: ");
+      scanf("%d", &num2);
+
+      x = divisao(num, num2);
+
+      printf("A divisao entre %d e %d e %d\n\n", num, num2, x);
+      break;
+    case 5:
+      printf("\n\t\tMODO POTENCIA SELECIONADO !!\n\n");
+      printf("Digite o primerio numero: ");
+      scanf("%d", &num);
+
+      printf("Digite o segundo numero: ");
+      scanf("%d", &num2);
+
+      x = potencia(num, num2);
+      
+      printf("A Potencia entre %d e %d e %d\n\n", num, num2, x);
+
+      break;
+    case 6:
+      printf("\n\t\tMODO RAIZ SELECIONADO !!\n\n");
+      printf("Digite o numero: ");
+      scanf("%d", &num);
+
+      x = raiz(num);
+
+      printf("A Raiz de %d e %d\n\n", num, x);
+      
+      break;
+    case 7:
+      printf("Calculadora encerrada.");
+      return 0;
+      break;
+    default:
+      printf("Opcao Invalida, digite novamente.\n\n");
+    }
+  }
+}
