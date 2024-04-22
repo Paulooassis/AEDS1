@@ -1,0 +1,114 @@
+#include <stdio.h>
+#include <string.h>
+
+typedef struct{
+char nome[60], end[60], mae[60], pai[60],
+tel[12], gmail[40];
+}aluno;
+
+void Menu(){
+  for (int i = 0; i < 50; i++) {
+    printf("-");
+  }
+  printf("\n\t\t*** Senai CTTI ***\n");
+  for (int i = 0; i < 50; i++) {
+    printf("-");
+  }
+  printf("\n\nSeja Bem vindo ao Menu de Cadastro do Senai !!");
+
+  printf("\n\nMenu de opcoes !!\n\n");
+  printf("1. Cadastrar Aluno.\n2. Pesquisar Aluno.\n3. Listar Alunos\n4. Encerrar programa.\n\n");
+  printf("Digite a opcao desejada: ");
+}
+
+void cadastraraluno(aluno alu[], int *ptr){
+  
+  printf("Digite o nome: ");
+  scanf(" %[^\n]", alu[*ptr].nome);
+  printf("Digite o endereco: ");
+  scanf(" %[^\n]", alu[*ptr].end);
+  printf("Digite o nome da mae: ");
+  scanf(" %[^\n]", alu[*ptr].mae);
+  printf("Digite o nome do pai: ");
+  scanf(" %[^\n]", alu[*ptr].pai);
+  printf("Digite o telefone: ");
+  scanf(" %[^\n]", alu[*ptr].tel);
+  printf("Digite o gmail: ");
+  scanf(" %[^\n]", alu[*ptr].gmail);
+  (*ptr)++;
+  printf("\n");
+}
+
+void pesquisaraluno(aluno alu[], int *ptr){
+
+  char nome2[60]; 
+  
+  printf("Consulta por nomes selecionada !!\n\n");
+  if (*ptr == 0) {
+    printf("Nenhum cadastro realizado\n");
+  } else {
+    printf("Digite um nome: ");
+    scanf(" %[^\n]", nome2);
+
+      for (int i = 0; i < *ptr; i++) {
+        if ((strcasecmp(nome2, alu[i].nome)) == 0) {
+          printf("\nCadastro encontrado !!\n\n");
+          printf("O nome e %s\n", alu[i].nome);
+          printf("O endereco e %s\n", alu[i].end);
+          printf("O nome da mae e %s\n", alu[i].mae);
+          printf("O nome do pai e %s\n", alu[i].pai);
+          printf("O telefone e %s\n", alu[i].tel);
+          printf("O gmail e %s\n\n", alu[i].gmail);
+        }
+      }
+  }
+}
+
+void listaralunos(aluno alu[], int *ptr){
+  if (*ptr == 0) {
+    printf("Nenhum cadastro realizado.\n");
+  } else {
+    for (int i = 0; i < *ptr; i++) {
+      printf("O %d nome e %s\n", i + 1, alu[i].nome);
+      printf("O %d endereco e %s\n", i + 1, alu[i].end);
+      printf("O %d nome da mae e %s\n", i + 1, alu[i].mae);
+      printf("O %d nome do pai e %s\n", i + 1, alu[i].pai);
+      printf("O %d telefone e %s\n", i + 1, alu[i].tel);
+      printf("O %d gmail e %s\n", i + 1, alu[i].gmail);
+    }
+  }
+}
+
+int main() {
+  
+  int opcao = 0, cont = 0;
+  int *ptr = &cont;
+
+  aluno alu[cont];
+
+  while (opcao != 4) {
+    
+    Menu();
+    scanf("%d", &opcao);
+    printf("\n");
+
+    switch (opcao) {
+
+    case 1:
+        cadastraraluno(alu, &cont);
+      break;
+    case 2:
+      pesquisaraluno(alu, &cont);
+      break;
+    case 3:
+      listaralunos(alu, &cont);
+      break;
+    case 4:
+      printf("Programa encerrado com sucesso !!");
+      break;
+    default:
+      printf("Opcao digitada inválida.\n\n");
+    }
+  }
+  return 0;
+}
