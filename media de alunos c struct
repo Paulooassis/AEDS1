@@ -1,0 +1,57 @@
+#include <stdio.h>
+
+typedef struct{
+char nome[60];
+float nota;
+}aluno;
+
+aluno cadastrar(){
+  aluno alu;
+  printf("Digite o nome do aluno: ");
+  scanf(" %[^\n]", alu.nome);
+
+  printf("Digite a nota: ");
+  scanf("%f", &alu.nota);
+
+  return alu;
+}
+
+void imprimiraluno(aluno alu){
+  printf("\nO nome do aluno e  %s\nA nota dele e %.2f\n", alu.nome, alu.nota);
+}
+
+float calcmedia(aluno alu[], int totalunos){
+  float soma =0 ;
+  if(totalunos == 0){
+    return 0;
+  }
+  else{
+    for(int i=0; i<totalunos; i++){
+       soma += alu[i].nota;
+    }
+  }
+  return soma/totalunos;
+}
+
+int main(){
+  int totalunos =0;
+  float media;
+
+  printf("Digite o total de alunos: ");
+  scanf("%d", &totalunos);
+
+  aluno alu[totalunos];
+
+  for(int i=0; i<totalunos; i++){
+    alu[i] = cadastrar();
+  }
+  
+  media = calcmedia(alu, totalunos);
+
+  for(int i=0; i< totalunos; i++){
+    imprimiraluno(alu[i]);
+  }
+  
+  printf("\n");
+  printf("\nA media dos alunos e %.2f", media);
+}
