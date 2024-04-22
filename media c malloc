@@ -1,0 +1,24 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(){
+int n;
+
+printf("Digite a quantidade de alunos; ");
+scanf("%d", &n);
+
+double *ptr, soma =0, media;
+
+ptr = (int*)malloc(n*sizeof(int));
+
+for(int i=0; i<n; i++){
+    printf("Digite a nota do %d: ", i+1);
+    scanf("%lf", ptr+i);
+    soma += *(ptr+i);
+}
+media = soma/n;
+
+printf("A soma das notas dos %d aluno e %lf e a media e %lf", n, soma, media);
+
+free(ptr);
+}
