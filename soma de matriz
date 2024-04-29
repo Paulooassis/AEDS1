@@ -1,0 +1,16 @@
+#include <stdio.h>
+
+int main(){
+    int num[3][3], soma = 0;
+
+    for(int i=0; i< 3; i++){
+        for(int j=0; j<3; j++){
+            printf("Digite o numero %d %d: ", i, j);
+            scanf("%d", &num[i][j]);
+            soma += num[i][j];
+        }
+    }
+
+    printf("A soma e %d\n", soma);
+
+}
