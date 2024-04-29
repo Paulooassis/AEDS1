@@ -1,0 +1,23 @@
+#include <stdio.h>
+
+int main(){
+    int num[2][2][2], soma = 0, qnt=0;
+
+    for(int i=0; i< 2; i++){
+        for(int j=0; j<2; j++){
+            for(int k=0; k<2; k++){
+                printf("Digite o numero %d %d %d: ", i, j, k);
+                scanf("%d", &num[i][j][k]);
+                soma += num[i][j][k];
+                qnt++;
+            }
+        }
+    }
+
+    float media;
+
+    media = (float)soma / qnt;
+
+    printf("A soma e %d\n", soma);
+    printf("A media e %.2f", media);
+}
