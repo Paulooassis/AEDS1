@@ -1,0 +1,46 @@
+#include <stdio.h>
+
+int main(){
+    int m,n;
+
+    printf("Digite quantas linhas tera: ");
+    scanf("%d", &m);
+
+    printf("Digite quantas colunas tera: ");
+    scanf("%d", &n);
+
+    int num[m][n], maior, menor;
+
+    for(int i = 0; i < m; i++){
+        for(int j = 0; j < n; j++){
+            printf("Digite o numero %d %d: ", i, j);
+            scanf("%d", &num[i][j]);
+        }
+    }
+
+    maior = menor = num[0][0];
+    
+    for(int i = 0; i < m; i++){
+        for(int j = 0; j < n; j++){
+            if(maior < num[i][j]){
+                maior = num[i][j];
+            }
+            if(menor > num[i][j]){
+                menor = num[i][j];
+            }
+        }
+    }
+    
+    printf("\n");
+
+    for(int i = 0; i < m; i++){
+        for(int j = 0; j < n; j++){
+            printf("%d ", num[i][j]);
+        }
+        printf("\n");
+    }
+
+    printf("\n\n");
+
+    printf("O maior numero e %d\nO menor numero e %d", maior, menor);
+}
