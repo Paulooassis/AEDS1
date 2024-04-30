@@ -1,0 +1,53 @@
+#include <stdio.h>
+#include <math.h>
+
+int main() {
+    int m, n;
+
+    printf("Digite quantas linhas: ");
+    scanf("%d", &m);
+
+    printf("Digite quantas colunas: ");
+    scanf("%d", &n);
+
+    float mat[m][n], desvio[n], somar[n], media, quadrados_soma, desvio_padrao;
+
+    for (int j = 0; j < n; j++) { // Inicializar somar[j] para 0 para cada coluna
+        somar[j] = 0;
+    }
+
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+            printf("Digite o numero %d %d: ", i, j);
+            scanf("%f", &mat[i][j]);
+            somar[j] += mat[i][j];
+        }
+    }
+
+    printf("\n");
+
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+            printf("%.2f ", mat[i][j]);
+        }
+        printf("\n");
+    }
+
+    for (int j = 0; j < n; j++) {
+        media = somar[j] / m;
+        quadrados_soma = 0;
+        for (int i = 0; i < m; i++) {
+            quadrados_soma += pow((mat[i][j] - media), 2);
+        }
+        desvio_padrao = sqrt(quadrados_soma / m);
+        desvio[j] = desvio_padrao;
+    }
+
+    printf("\n");
+
+    for (int j = 0; j < n; j++) {
+        printf("O desvio padrao da %d coluna e %.2f\n", j + 1, desvio[j]);
+    }
+
+    return 0;
+}
