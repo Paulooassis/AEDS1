@@ -1,0 +1,43 @@
+#include <stdio.h>
+
+int main(){
+    int m, n;
+
+    printf("Digite quantos alunos serao: ");
+    scanf("%d", &m);
+
+    printf("Digite quantas notas serao: ");
+    scanf("%d", &n);
+
+    float alu[m][n], soma[m], somatotal = 0, somar = 0, qnt = 0;
+    char nome[m][50];
+
+
+    for(int i=0; i < m; i++){
+        printf("Digite o %d nome: ", i+1);
+        scanf(" %[^\n]", nome[i]);
+        for(int j=0; j < n; j++){
+            printf("Digite a %d nota do %d aluno: ", j+1, i+1);
+            scanf("%f", &alu[i][j]);
+            somar += alu[i][j];
+            somatotal += alu[i][j];
+            qnt++;
+        }
+        printf("\n");
+        soma[i] = somar;
+        somar = 0;
+    }
+
+    for(int i=0; i < m; i++){
+        if(soma[i] >= 70){
+            printf("%s %.1f A\n", nome[i], soma[i]);
+        }
+        else if(soma[i] < 40){
+            printf("%s %.1f R\n", nome[i], soma[i]);
+        }
+        else{
+            printf("%s %.1f E\n", nome[i], soma[i]);
+        }
+    }
+    printf("A media de todos e %.1f", somatotal/qnt);
+}
