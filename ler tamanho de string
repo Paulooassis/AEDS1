@@ -1,0 +1,14 @@
+#include <stdio.h>
+#include <string.h>
+
+int main(){
+    int x;
+    char nome[50];
+
+    printf("Digite um nome: ");
+    scanf(" %[^\n]", nome);
+
+    x = strlen(nome);
+
+    printf("A string %s tem %d caracteres.\n", nome, x);
+}
