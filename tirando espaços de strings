@@ -1,0 +1,22 @@
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+int main(){
+    char str[50], str2[50];
+    int x, j;
+
+    printf("Digite uma string: ");
+    scanf(" %[^\n]", str);
+
+    x = strlen(str);
+    j = 0;
+
+    for(int i=0; i<x; i++){
+        if(isspace(str[i])){
+        }
+        else{
+            printf("%c", str[i]);
+        }
+    }
+}
