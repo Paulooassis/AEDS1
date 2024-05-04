@@ -1,0 +1,22 @@
+#include <stdio.h>
+#include <string.h>
+
+int main(){
+    char str[500];
+    int x, j;
+
+    printf("Digite uma string: ");
+    scanf(" %[^\n]", str);
+
+    x = strlen(str);
+    j =x;
+
+    char inversa[j];
+
+    for(int i=0; i<x; i++){
+        inversa[j-1] = str[i];
+        j--;
+    }
+
+    printf("%s", inversa);
+}
