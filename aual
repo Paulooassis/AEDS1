@@ -1,0 +1,51 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int sortear()
+{
+    return rand() % 6 + 1;
+}
+
+int somar(int dado1, int dado2)
+{
+    return dado1+ dado2;
+}
+
+
+int main()
+{
+    srand(time(NULL));
+    int opcao = 1, qnt = -1;
+
+    while(opcao != 2)
+    {
+        printf("\t\tJOGO DOS DADOS !!\n\nDeseja jogar:\n\n1. Sim\n2. Nao\n\nDeseja jogar: ");
+        scanf("%d", &opcao);
+
+        if(opcao == 1){
+            qnt++;
+        }
+
+        int jogador1[qnt][2], jogador2[qnt][2], historico1[qnt][2], historico2[qnt][2];
+        
+        jogador1[qnt][0] = sortear();
+        jogador1[qnt][1] = sortear();
+        
+        historico1[qnt][0] = jogador1[0];
+        historico1[qnt][1] = jogador1[1];
+            
+        jogador2[qnt][0] = sortear();
+        jogador2[qnt][1] = sortear();
+        
+        historico2[qnt][0] = jogador1[0];
+        historico2[qnt][1] = jogador1[1];
+
+        
+        for(int i=0; i<qnt; i++){
+                printf("%d + %d = %d\n", jogador1[i][0], jogador1[])
+        }
+    }
+}
+
+
