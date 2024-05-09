@@ -1,0 +1,80 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int sortear()
+{
+    return rand() % 6 + 1;
+}
+
+int somar(int jogador[2])
+{
+    return jogador[0] + jogador[1];
+}
+
+int main()
+{
+    srand(time(NULL));
+    int partidas = 1, opcao = 0;
+    int jogador1[2], jogador2[2], soma1[partidas], soma2[partidas], historico1[100][2], historico2[100][2];
+    while(opcao != 2)
+    {
+        printf("\t\tJOGO DE DADOS DO PAULIN !!\n\nDeseja jogar ?\n\n1. Sim\n2. Nao\n\nDigite a opcao: ");
+        scanf("%d", &opcao);
+
+        if(opcao == 2){
+            break;
+        }
+        else{
+            jogador1[0]= sortear();
+        jogador1[1] = sortear();
+        historico1[partidas][0] = jogador1[0];
+        historico1[partidas][1] = jogador1[1];
+
+        soma1[partidas] = somar(jogador1);
+
+        jogador2[0] = sortear();
+        jogador2[1] = sortear();
+        historico2[partidas][0] = jogador2[0];
+        historico2[partidas][1] = jogador2[1];
+
+        soma2[partidas] = somar(jogador2);
+
+            if(soma1[partidas]> soma2[partidas])
+            {
+                printf("%d + %d = %d\n%d + %d = %d\n\nO jogador 1 venceu !!\n", jogador1[0], jogador1[1], soma1[partidas], jogador2[0], jogador2[1], soma2[partidas]);
+            }
+            else if(soma2[partidas] > soma1[partidas])
+            {
+                printf("%d + %d = %d\n%d + %d = %d\n\nO jogador 2 venceu !!\n", jogador1[0], jogador1[1], soma1[partidas], jogador2[0], jogador2[1], soma2[partidas]);
+            }
+            else
+            {
+                printf("%d + %d = %d\n%d + %d = %d\n\nOs jogadores empataram !!\n", jogador1[0], jogador1[1], soma1[partidas], jogador2[0], jogador2[1], soma2[partidas]);
+            }
+
+        partidas++;
+        }
+    }
+
+    printf("\n\n");
+    printf("\t\tOS RESULTADOS DOS JOGOS FORAM\n\n");
+
+    for(int i=1; i<partidas; i++)
+        {
+            printf("PARTIDA %d\n\n", i);
+            if(soma1[i]> soma2[i])
+            {
+                printf("%d + %d = %d\n%d + %d = %d\n\nO jogador 1 venceu !!\n", historico1[i][0], historico1[i][1], soma1[i], historico2[i][0], historico2[i][1], soma2[i]);
+            }
+            else if(soma2[i] > soma1[i])
+            {
+                printf("%d + %d = %d\n%d + %d = %d\n\nO jogador 2 venceu !!\n", historico1[i][0], historico1[i][1], soma1[i], historico2[i][0], historico2[i][1], soma2[i]);
+            }
+            else
+            {
+                printf("%d + %d = %d\n%d + %d = %d\n\nOs jogadores empataram !!\n", historico1[i][0], historico1[i][1], soma1[i], historico2[i][0], historico2[i][1], soma2[i]);
+            }
+        }
+
+}
