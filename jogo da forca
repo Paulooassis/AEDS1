@@ -1,0 +1,55 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <time.h>
+
+
+int main(){
+    srand(time(NULL));
+
+    char palavras[25][20] = {"paulo", "marcos", "gabriel", "joao", "pedro", "tiago", "gustavo", "daniel", "marta", "izabela", "bola", "enxada", "arma", "futebol", "chuteira", "escola", "cavalo", "porco", "garrafa", "celular", "talco", "medalha", "toalha", "caderno", "notebook"};
+
+    char letra, palavraoculta[20], palavra[20];
+    int pala = rand() % 25, tentativas = 6, tamanho;
+
+    strcpy(palavra, palavras[pala]);
+
+    tamanho = strlen(palavra);
+
+    printf("\t\tFORCA DO PAULIN\n\n");
+
+    for(int i=0; i < tamanho; i++){
+        palavraoculta[i] = '_';
+    }
+
+    while(tentativas > 0){
+        int acertos =0;
+        printf("\nPalavra oculta: %s\n", palavraoculta);
+        printf("Tentativas Restantes: %d\n\n", tentativas);
+
+        printf("Digite uma letra: ");
+        scanf(" %c", &letra);
+
+        for(int i=0; i<tamanho; i++){
+            if(letra == palavra[i]){
+                palavraoculta[i] = letra;
+                acertos++;
+            }
+        }
+
+        if(acertos == 0){
+            tentativas--;
+            printf("\nLetra Incorreta");
+        }
+        else{
+            printf("\nLetra correta");
+        }
+        if(strcmp(palavra, palavraoculta) == 0){
+            printf("\n\nParabens voce ganhou !!A palavra era %s\n", palavra);
+            break;
+        }
+    }
+    if(tentativas == 0){
+        printf("\n\nVoce perdeu. A palavra oculta era %s.", palavra);
+    }
+}
