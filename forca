@@ -1,0 +1,98 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
+#include <time.h>
+
+void dicas(int i){
+    if(i == 0){
+        printf("Dica: Objeto de futebol\n\n");
+    }
+    else if(i == 1){
+        printf("Dica: Objeto de casa\n\n");
+    }
+    else if(i == 2){
+        printf("Dica: Item de futebol\n\n");
+    }
+    else if(i == 3){
+        printf("Dica: Objeto pessoal\n\n");
+    }
+    else if(i == 4){
+        printf("Dica: Profissao\n\n");
+    }
+    else if(i == 5){
+        printf("Dica: Objeto usado no interior\n\n");
+    }
+    else if(i == 6){
+        printf("Dica: Profissao\n\n");
+    }
+    else if(i == 7){
+        printf("Dica: Vestuario\n\n");
+    }
+    else if(i == 8){
+        printf("Dica: Vestuario\n\n");
+    }
+    else if(i == 9){
+        printf("Dica: Profissao\n\n");
+    }
+    else{
+        printf("Dica: Nome\n\n");
+    }
+}
+
+int main(){
+    char palavras[11][20] = {"bola", "mesa", "campo", "celular", "massagista", "machado", "policial", "bone", "chinelo", "traficante", "alexandre"};
+    char letra, palavra[20], palavraoculta[20];
+    int tamanho, tentativas = 6, indice;
+
+    srand(time(NULL));
+
+    indice = rand() % 11;
+
+    strcpy(palavra, palavras[indice]);
+
+    tamanho = strlen(palavra);
+
+    printf("\t\tBEM VINDO A FORCA DO PAULIN\n\n");
+
+    dicas(indice);
+
+    for(int i=0; i< tamanho; i++){
+        palavraoculta[i] = '_';
+    }
+
+
+    while(tentativas > 0){
+        printf("Palavra oculta: %s\n", palavraoculta);
+        printf("Tentativas restantes: %d\n\n", tentativas);
+
+        printf("Digite uma letra: ");
+        scanf(" %c", &letra);
+
+        int acertos = 0;
+
+        for(int i=0; i<tamanho; i++){
+            if(palavra[i] == letra){
+                palavraoculta[i] = letra;
+                acertos++;
+            }
+        }
+
+        if(acertos == 0){
+            printf("\nLetra incorreta.\n\n");
+            tentativas--;
+        }
+        else{
+            printf("\nLetra correta.\n\n");
+        }
+
+        if(strcmp(palavra, palavraoculta) == 0){
+            printf("Parabens voce ganhou !! A palavra era %s\n", palavra);
+            break;
+        }
+    }
+    if(tentativas == 0){
+        printf("Voce perdeu. A palavra era %s\n", palavra);
+    }
+    //criar acertos
+}
