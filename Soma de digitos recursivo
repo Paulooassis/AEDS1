@@ -1,0 +1,20 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int somadenum(int num){
+    if(num == 0){
+        return 0;
+    }
+    else{
+        return num%10 + somadenum(num/10);
+    }
+}
+
+int main(){
+    int num;
+
+    printf("Digite um numero: ");
+    scanf("%d", &num);
+
+    printf("A soma dos numeros digitados(%d) e %d", num, somadenum(num));
+}
