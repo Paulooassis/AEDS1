@@ -1,0 +1,28 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int maior_elemento(int array[], int n){
+    if(n == 1){
+        return array[0];
+    }
+    int maior;
+
+    maior = maior_elemento(array, n-1);
+    if(array[n-1] > maior){
+        return array[n-1];
+    }
+    else{
+        return maior;
+    }
+}
+
+int main(){
+    int array[5];
+
+    for(int i=0; i<5; i++){
+        printf("Digite um num[%d]: ", i+1);
+        scanf("%d", &array[i]);
+    }
+
+    printf("%d", maior_elemento(array, 5));
+}
