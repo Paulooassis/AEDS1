@@ -1,0 +1,19 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int soma_array(int array[], int n){
+    if(n == 0){
+        return 0;
+    }
+    return array[n-1] + soma_array(array, n-1);
+}
+
+int main(){
+    int num[5];
+
+    for(int i=0; i<5; i++){
+        printf("Digite o %d num: ", i+1);
+        scanf("%d", &num[i]);
+    }
+    printf("%d", soma_array(num, 5));
+}
