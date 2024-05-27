@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int crescente(int array[], int tam, int index){
+    if(index == tam){
+        return 1;
+    }
+    if(array[index] % 2 != 0){
+        return 0;
+    }
+    return crescente(array, tam, index+1);
+}
+
+int main(){
+    //função recurssiva para verificar se todos elementos de um array são pares
+    int array[4];
+
+    for(int i=0; i<4; i++){
+        printf("Digite o %d num: ", i+1);
+        scanf("%d", &array[i]);
+    }
+
+    if(crescente(array, 4, 0)== 1){
+        printf("Todos os elementos sao pares. ");
+    }
+    else{
+        printf("Nem todos elementos sao pares.");
+    }
+
+}
