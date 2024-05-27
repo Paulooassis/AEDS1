@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int crescente(int array[], int tam){
+    if(tam <= 1){
+        return 1;
+    }
+    if(array[tam-1] < array[tam-2]){
+        return 0;
+    }
+    return crescente(array, tam-1);
+}
+
+int main(){
+    //função recurssiva para verificar se um array está ordenada de forma crescente
+    int array[4];
+
+    for(int i=0; i<4; i++){
+        printf("Digite o %d num: ", i+1);
+        scanf("%d", &array[i]);
+    }
+
+    if(crescente(array, 4)== 1){
+        printf("Esta em ordem crescente. ");
+    }
+    else{
+        printf("Nao esta em ordem crescente. ");
+    }
+
+}
