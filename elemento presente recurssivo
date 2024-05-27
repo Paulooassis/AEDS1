@@ -1,0 +1,32 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int elementopresente(int array[], int ele, int tam){
+    if(tam == 0){
+        return 0;
+    }
+    if(array[tam-1] == ele){
+        return 1;
+    }
+    return elementopresente(array, ele, tam-1);
+}
+
+int main(){
+    int array[5], elemento;
+
+    for(int i=0; i<4; i++){
+        printf("Digite o %d num: ", i+1);
+        scanf("%d", &array[i]);
+    }
+
+    printf("Digite um elemento: ");
+    scanf("%d", &elemento);
+
+    if(elementopresente(array, elemento, 4) == 1){
+        printf("O elemento %d esta presente.", elemento);
+    }
+    else{
+        printf("Nao esta presente. ");
+    }
+
+}
