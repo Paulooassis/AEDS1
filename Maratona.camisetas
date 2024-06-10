@@ -1,0 +1,62 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    int n, p, m, cont1=0, cont2=0;
+
+    do
+    {
+        printf("Digite quantas camisas serao: ");
+        scanf("%d", &n);
+    }
+    while(n<1 || n>1000);
+
+
+    int t[n];
+
+    for(int i=0; i<n; i++)
+    {
+        do{
+           printf("Digite o tamanho da %d camisa: ", i+1);
+        scanf("%d", &t[i]);
+        }while(t[i]<1 || t[i]>2);
+    }
+
+    do
+    {
+        printf("Digite qnts do tam P: ");
+        scanf("%d", &p);
+    }
+    while(p<0 || p >1000);
+
+
+    do
+    {
+        printf("Digite qnts do tam M: ");
+        scanf("%d", &m);
+    }
+    while(m<0 || m>1000);
+
+
+    for(int i=0; i<n; i++)
+    {
+        if(t[i] == 1)
+        {
+            cont1++;
+        }
+        if(t[i] == 2)
+        {
+            cont2++;
+        }
+    }
+
+    if(cont1 == p && cont2 == m)
+    {
+        printf("S");
+    }
+    else
+    {
+        printf("N");
+    }
+}
