@@ -1,0 +1,281 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
+#include <stdbool.h>
+
+typedef struct{
+    int codigo;
+    char nome[50];
+    char endereco[50];
+    char telefone[20];
+}cliente;
+//struct criada de cliente com todas as suas informações necessárias
+
+typedef struct{
+    int codigo;
+    char nome[50];
+    char telefone[20];
+    char cargo[30];
+    float salario;
+}funcionario;
+//struct criada para o funcionario, contendo todas as informações necessárias
+
+typedef struct{
+    int codigo;
+    int qnt_diarias;
+    int codigo_cliente;
+    int num_quarto;
+    //falta data de entrega e data de saida
+}estadia;
+//struct criada para a estadia, contendo todas as informações necessárias
+
+typedef struct{
+    int numm_quarto;
+    int qnt_hospedes;
+    float valor_diaria;
+    bool status;
+}quarto;
+//struct criada para o quarto, contendo todas as informações necessárias
+
+typedef struct{
+    quarto qua[100];
+    estadia esta[100];
+    funcionario fun[100];
+    cliente cli[100];
+}hotel;
+
+
+void menu(int *opcao){
+    for(int i=0; i<50; i++){
+        printf("-");
+    }
+
+    printf("\n\n\tBEM VINDO A DDUPLA DA SALVACAO !!\n");
+
+    for(int i=0; i<50; i++){
+        printf("-");
+    }
+
+    printf("\n\n\t\tMENU DE OPCOES !!\n\n");
+    printf("1.Cadastrar um cliente.\n");
+    printf("2.Cadastrar um funcionario.\n");
+    printf("3.Cadastrar uma estadia.\n");
+    printf("4.Pesquisar informacoes.\n");
+    printf("5.Sair do programa.\n\n");
+    printf("Digite a opcao desejada: ");
+    scanf("%d", opcao);
+}
+
+void cadastrarcliente(cliente cli[], int *total){
+  printf("\n\tCADASTRAR CLIENTE !!\n\n");
+  cli[*total].codigo++;
+  printf("Digite o nome do cliente: ");
+  scanf(" %[^\n]", cli[*total].nome);
+  printf("Digite o endereco do cliente: ");
+  scanf(" %[^\n]", cli[*total].endereco);
+  printf("Digite o telefone do cliente: ");
+  scanf(" %[^\n]", cli[*total].telefone);
+  (*total)++;
+}
+
+void cadastrarfuncionario(funcionario fun[], int *totalfun){
+  printf("\n\tCADASTRAR FUNCIONARIO !!\n\n");
+  fun[*totalfun].codigo++;
+  printf("Digite o nome do funcionario: ");
+  scanf(" %[^\n]", fun[*totalfun].nome);
+  printf("Digite o telefone do funcionario: ");
+  scanf(" %[^\n]", fun[*totalfun].telefone);
+  printf("Digite o cargo do funcionario: ");
+  scanf(" %[^\n]", fun[*totalfun].cargo);
+  printf("Digite o salario do funcionario: ");
+  scanf(" %f", &fun[*totalfun].salario);
+  (*totalfun)++;
+}
+
+void cadastrarestadia(estadia esta[], cliente cli[], int *totaldeesta, int *totaldecli){
+  esta[*totaldeesta].codigo++;
+  //perguntar o codigo solicitado
+  printf("Digite a quantidade de hospedes: ");
+  scanf("%d", &esta[*totaldeesta].)
+}
+
+void pesquisar(int *totcliente, cliente cli[], funcionario fun[]){
+  int op, cod, opcao;
+  char str[50];
+  bool achou = false;
+  
+  do{
+    printf("\n\tREALIZAR PESQUISA !!\n\n");
+    printf("\tDeseja pesquisar: \n\n");
+    printf("1.Cliente\n2.funcionario\n\nDigite a opcao desejada: ");
+    scanf("%d", &opcao);
+  }while(opcao<1 || opcao > 2);
+  //verificar se o usuario quer ver as informações do cliente ou funcionario
+
+  do{
+    printf("\tDeseja pesquisar por: \n\n");
+    printf("1.Nome\n2.Codigo\n\nDigite a opcao desejada: ");
+    scanf("%d", &op);
+  }while(op <1 || op >2);
+  //verificar se o usuario quer pesquisar por nome ou codigo 
+
+  //primeiro if sendo cliente
+  if(opcao == 1){
+    //primeiro if para pesquisar por nome
+    if(op == 1){
+      printf("Digite o nome: ");
+      scanf(" %[^\n]", str);
+
+      for(int i=0; i < *totcliente; i++){
+        if(str == cli[i].nome){
+          achou = true;
+          printf("\nCodigo: %d\n", cli[i].codigo);
+          printf("\nNome: %s\n", cli[i].nome);
+          printf("\nEndereco: %s\n", cli[i].endereco);
+          printf("\nTelefone: %s\n\n", cli[i].telefone);
+        }
+      }
+      // if-else para pesquisar por codigo
+    }else{
+      printf("Digite o codigo: ");
+      scanf("%d", &cod);
+
+      for(int i=0; i < *totcliente; i++){
+        if(cod == cli[i].codigo){
+          achou = true;
+          printf("\nCodigo: %d\n", cli[i].codigo);
+          printf("\nNome: %s\n", cli[i].nome);
+          printf("\nEndereco: %s\n", cli[i].endereco);
+          printf("\nTelefone: %s\n\n", cli[i].telefone);
+        }
+      }
+    }
+    // if-else para pesquisar o funcionario
+  }else{
+    //primeiro if para pesquisar por nome
+    if(op == 1){
+      printf("Digite o nome: ");
+      scanf(" %[^\n]", str);
+
+      for(int i=0; i < *totcliente; i++){
+        if(str == fun[i].nome){
+          achou = true;
+          printf("\nCodigo: %d\n", fun[i].codigo);
+          printf("Nome: %s\n", fun[i].nome);
+          printf("Telefone: %s\n", fun[i].telefone);
+          printf("Cargo: %s\n", fun[i].cargo);
+          printf("Salario: %.2f\n\n", fun[i].salario);
+        }
+      }
+      // if-else para pesquisar por codigo
+    }else{
+      printf("Digite o codigo: ");
+      scanf("%d", &cod);
+
+      for(int i=0; i < *totcliente; i++){
+        if(cod == fun[i].codigo){
+          achou = true;
+          printf("\nCodigo: %d\n", fun[i].codigo);
+          printf("Nome: %s\n", fun[i].nome);
+          printf("Telefone: %s\n", fun[i].telefone);
+          printf("Cargo: %s\n", fun[i].cargo);
+          printf("Salario: %.2f\n\n", fun[i].salario);
+        }
+      }
+    }
+  }
+
+  //if para caso o codigo nao encontre nenhuma informação
+  if(achou == false){
+    printf("Nenhuma informacao encontrada.\n\n");
+  }
+}
+
+void imprimirclientetxt(cliente cli[], int *totaldecli){
+  FILE *arq;
+  arq = fopen("clientes.txt", "w");
+
+  for(int i=0; i<*totaldecli; i++){
+      fprintf(arq, "%d;", cli[i].codigo);
+      fprintf(arq, "%s;", cli[i].nome);
+      fprintf(arq, "%s;", cli[i].endereco);
+      fprintf(arq, "%s\n", cli[i].telefone);
+  }
+  fclose(arq);
+}
+
+void scanearclientetxt(cliente cli[], int *totaldecli){
+  FILE *arq;
+  arq = fopen("clientes.txt", "r");
+
+  for(int i=0; i<*totaldecli; i++){
+      fscanf(arq, "%d", &cli[i].codigo);
+      fgetc(arq);
+      fscanf(arq, " %[^;]", cli[i].nome);
+      fgetc(arq);
+      fscanf(arq, " %[^;]", cli[i].endereco);
+      fgetc(arq);
+      fscanf(arq, " %[^\n]", cli[i].telefone);
+      fgetc(arq);
+  }
+  fclose(arq);
+}
+
+void imprimirfuncionariotxt(funcionario fun[], int *totaldefun){
+  FILE *arq;
+  arq = fopen("funcionarios.txt", "w");
+
+  for(int i=0; i<*totaldefun; i++){
+      fprintf(arq, "%d;", fun[i].codigo);
+      fprintf(arq, "%s;", fun[i].nome);
+      fprintf(arq, "%s;", fun[i].telefone);
+      fprintf(arq, "%s;", fun[i].cargo);
+      fprintf(arq, "%.2f\n", fun[i].salario);
+  }
+  fclose(arq);
+}
+
+void imprimirestadiatxt(){
+
+}
+
+void imprimirquartotxt(){
+
+}
+
+int main(){
+    int opcao =0, totaldecliente = 0, totaldefun = 0, totaldeestadia = 0, totaldequa = 0;
+    cliente cli[100];
+    funcionario fun[100];
+    estadia est[100];
+    quarto qua[100];
+
+    while(opcao != 5){
+       menu(&opcao);
+
+       //inicio do switch case de acordo com a opcao digitada
+       switch(opcao){
+            case 1:
+                cadastrarcliente(cli, &totaldecliente);
+               break;
+            case 2:
+              cadastrarfuncionario(fun, &totaldefun);
+                break;
+            case 3:
+                break;
+            case 4:
+              pesquisar(&totaldecliente, cli, fun);
+                break;
+            case 5:
+                printf("Programa encerrado com sucesso !!");
+                return 0;
+                break;
+            default:
+                printf("Opcao digitada invalida !!\n\n");
+                break;
+       }
+       // fim do switch case
+    }
+    //fim do looping while
+}
