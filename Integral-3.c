@@ -19,7 +19,7 @@ deltaX = (b-a)/n;
 
 for(int i = 1; i <= n-1; i++){
     X = a + i*deltaX;
-    f = 4 * 3.14 * sqrt(25-(X*X));
+    f = 20* 3.14;
     soma += f*deltaX;
 }
 
